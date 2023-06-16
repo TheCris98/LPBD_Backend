@@ -39,9 +39,7 @@ namespace LPBD_Backend.Models
             {
                 entity.HasKey(e => e.IdDetHit);
 
-                entity.Property(e => e.IdDetHit)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idDetHit");
+                entity.Property(e => e.IdDetHit).HasColumnName("idDetHit");
 
                 entity.Property(e => e.IdHit).HasColumnName("idHit");
 
@@ -62,9 +60,7 @@ namespace LPBD_Backend.Models
             {
                 entity.HasKey(e => e.IdDetTar);
 
-                entity.Property(e => e.IdDetTar)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idDetTar");
+                entity.Property(e => e.IdDetTar).HasColumnName("idDetTar");
 
                 entity.Property(e => e.IdPer).HasColumnName("idPer");
 
@@ -85,9 +81,7 @@ namespace LPBD_Backend.Models
             {
                 entity.HasKey(e => e.IdHit);
 
-                entity.Property(e => e.IdHit)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idHit");
+                entity.Property(e => e.IdHit).HasColumnName("idHit");
 
                 entity.Property(e => e.FecLimHit)
                     .HasColumnType("date")
@@ -100,9 +94,7 @@ namespace LPBD_Backend.Models
 
                 entity.ToTable("Personal");
 
-                entity.Property(e => e.IdPer)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idPer");
+                entity.Property(e => e.IdPer).HasColumnName("idPer");
 
                 entity.Property(e => e.CedPer)
                     .HasMaxLength(10)
@@ -138,9 +130,7 @@ namespace LPBD_Backend.Models
             {
                 entity.HasKey(e => e.IdPro);
 
-                entity.Property(e => e.IdPro)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idPro");
+                entity.Property(e => e.IdPro).HasColumnName("idPro");
 
                 entity.Property(e => e.DescPro)
                     .HasMaxLength(300)
@@ -165,9 +155,7 @@ namespace LPBD_Backend.Models
             {
                 entity.HasKey(e => e.IdRol);
 
-                entity.Property(e => e.IdRol)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idRol");
+                entity.Property(e => e.IdRol).HasColumnName("idRol");
 
                 entity.Property(e => e.DescRol)
                     .HasMaxLength(200)
@@ -184,9 +172,7 @@ namespace LPBD_Backend.Models
             {
                 entity.HasKey(e => e.IdTar);
 
-                entity.Property(e => e.IdTar)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idTar");
+                entity.Property(e => e.IdTar).HasColumnName("idTar");
 
                 entity.Property(e => e.AvanceTar)
                     .HasColumnType("decimal(5, 2)")
