@@ -58,9 +58,13 @@ namespace LPBD_Backend.Controllers
                 var listaIntegrantes = await _context.DetalleProyectos.Where(inte => inte.IdPro == id).ToListAsync();
                 foreach (var item in listaIntegrantes)
                 {
-                    return Ok();
+                    var personal = await _context.DetalleProyectos.Where(detalle => detalle.IdPro == item.IdPro).ToListAsync();
+                    foreach (var pers in personal)
+                    {
+                        var persona = await _context.Personals.Where(per => per.IdPer == item.IdPer).FirstOrDefaultAsync();
+                    }
                 }
-                return Ok();
+                return Ok(listaIntegrantes);
             }
             catch (Exception)
             {
