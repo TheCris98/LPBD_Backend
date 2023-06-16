@@ -22,13 +22,19 @@ namespace LPBD_Backend.Controllers
 
         // GET: api/Proyectoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Proyecto>>> GetProyectos()
+        [Route("proyectosUsuario")]
+        public async Task<ActionResult<IEnumerable<Proyecto>>> GetProyectos(int idUsuario)
         {
             if (_context.Proyectos == null)
             {
                 return NotFound();
             }
-            return await _context.Proyectos.ToListAsync();
+            // Filtrar los proyectos por el idUsuario
+            var proyectos = await _context.Proyectos
+                .Where(p => p.DetalleProyectos.Any(up => up.IdPer == idUsuario))
+                .ToListAsync();
+
+            return proyectos;
         }
 
         //// GET: api/Proyectoes/5
