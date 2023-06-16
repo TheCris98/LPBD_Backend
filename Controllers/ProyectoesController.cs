@@ -37,22 +37,36 @@ namespace LPBD_Backend.Controllers
             return proyectos;
         }
 
-        //// GET: api/Proyectoes/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Proyecto>> GetProyecto(int id)
+        [HttpGet]
+        [Route("proyectosGerente")]
+        public async Task<ActionResult<IEnumerable<Proyecto>>> GetProyectosGerente()
         {
             if (_context.Proyectos == null)
             {
                 return NotFound();
             }
-            var proyecto = await _context.Proyectos.FindAsync(id);
+            // Filtrar los proyectos por el idUsuario
+            return await _context.Proyectos.ToListAsync();
+        }
 
-            if (proyecto == null)
+        //// GET: api/Proyectoes/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<DetalleProyecto>> GetProyecto(int id)
+        {
+            try
             {
-                return NotFound();
+                var listaIntegrantes = await _context.DetalleProyectos.Where(inte => inte.IdPro == id).ToListAsync();
+                foreach (var item in listaIntegrantes)
+                {
+                    return Ok();
+                }
+                return Ok();
             }
+            catch (Exception)
+            {
 
-            return proyecto;
+                throw;
+            }
         }
 
         //// PUT: api/Proyectoes/5
