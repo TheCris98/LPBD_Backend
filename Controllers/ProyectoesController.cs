@@ -32,22 +32,22 @@ namespace LPBD_Backend.Controllers
         }
 
         //// GET: api/Proyectoes/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Proyecto>> GetProyecto(int id)
-        //{
-        //  if (_context.Proyectos == null)
-        //  {
-        //      return NotFound();
-        //  }
-        //    var proyecto = await _context.Proyectos.FindAsync(id);
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Proyecto>> GetProyecto(int id)
+        {
+            if (_context.Proyectos == null)
+            {
+                return NotFound();
+            }
+            var proyecto = await _context.Proyectos.FindAsync(id);
 
-        //    if (proyecto == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (proyecto == null)
+            {
+                return NotFound();
+            }
 
-        //    return proyecto;
-        //}
+            return proyecto;
+        }
 
         //// PUT: api/Proyectoes/5
         //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -88,6 +88,13 @@ namespace LPBD_Backend.Controllers
             try
             {
                 _context.Proyectos.Add(proyecto);
+                await _context.SaveChangesAsync();
+                if(proyecto.DetalleProyectos != null)
+                foreach (var item in proyecto.DetalleProyectos)
+                {
+                    item.IdPro = proyecto.IdPro;
+                    _context.DetalleProyectos.Add(item);
+                }
                 await _context.SaveChangesAsync();
                 return Ok(proyecto);
             }

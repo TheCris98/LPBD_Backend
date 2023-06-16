@@ -7,6 +7,7 @@ namespace LPBD_Backend.Models
     {
         public Proyecto()
         {
+            DetalleProyectos = new HashSet<DetalleProyecto>();
             Tareas = new HashSet<Tarea>();
         }
 
@@ -16,6 +17,7 @@ namespace LPBD_Backend.Models
         public DateTime? FecIniPro { get; set; }
         public DateTime? FecFinPro { get; set; }
 
+        public virtual ICollection<DetalleProyecto> DetalleProyectos { get; set; }
         public virtual ICollection<Tarea> Tareas { get; set; }
     }
 }

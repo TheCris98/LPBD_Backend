@@ -17,6 +17,7 @@ namespace LPBD_Backend.Models
         }
 
         public virtual DbSet<DetalleHito> DetalleHitos { get; set; } = null!;
+        public virtual DbSet<DetalleProyecto> DetalleProyectos { get; set; } = null!;
         public virtual DbSet<DetalleTarea> DetalleTareas { get; set; } = null!;
         public virtual DbSet<Hito> Hitos { get; set; } = null!;
         public virtual DbSet<Personal> Personals { get; set; } = null!;
@@ -54,6 +55,27 @@ namespace LPBD_Backend.Models
                     .WithMany(p => p.DetalleHitos)
                     .HasForeignKey(d => d.IdTar)
                     .HasConstraintName("FK_DetalleHitos_Tareas");
+            });
+
+            modelBuilder.Entity<DetalleProyecto>(entity =>
+            {
+                entity.HasKey(e => e.IdDetPro);
+
+                entity.Property(e => e.IdDetPro).HasColumnName("idDetPro");
+
+                entity.Property(e => e.IdPer).HasColumnName("idPer");
+
+                entity.Property(e => e.IdPro).HasColumnName("idPro");
+
+                entity.HasOne(d => d.IdPerNavigation)
+                    .WithMany(p => p.DetalleProyectos)
+                    .HasForeignKey(d => d.IdPer)
+                    .HasConstraintName("FK_DetalleProyectos_Personal");
+
+                entity.HasOne(d => d.IdProNavigation)
+                    .WithMany(p => p.DetalleProyectos)
+                    .HasForeignKey(d => d.IdPro)
+                    .HasConstraintName("FK_DetalleProyectos_Proyectos");
             });
 
             modelBuilder.Entity<DetalleTarea>(entity =>

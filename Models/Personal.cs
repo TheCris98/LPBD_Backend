@@ -7,6 +7,7 @@ namespace LPBD_Backend.Models
     {
         public Personal()
         {
+            DetalleProyectos = new HashSet<DetalleProyecto>();
             DetalleTareas = new HashSet<DetalleTarea>();
         }
 
@@ -19,6 +20,7 @@ namespace LPBD_Backend.Models
         public byte? DispPer { get; set; }
 
         public virtual Role? IdRolPerNavigation { get; set; }
+        public virtual ICollection<DetalleProyecto> DetalleProyectos { get; set; }
         public virtual ICollection<DetalleTarea> DetalleTareas { get; set; }
     }
 }

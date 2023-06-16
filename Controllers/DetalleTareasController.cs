@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LPBD_Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LPBD_Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class DetalleTareasController : ControllerBase
     {
         private readonly LPBD_BDContext _context;
